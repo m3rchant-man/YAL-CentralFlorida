@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-midnight text-cream antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-gold text-midnight;
+  }
+}
+
+@layer components {
+  /* Primary gold button (like Donate) */
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-6 py-2.5 bg-gold text-midnight font-body font-bold uppercase tracking-widest rounded-full
+           transition-all duration-300 hover:bg-gold-hover hover:shadow-lg hover:shadow-gold/30
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-midnight;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+  }
+  
+  /* Outline pill button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-5 py-2 border border-cream/40 text-cream font-body font-medium uppercase tracking-wider rounded-full
+           transition-all duration-300 hover:border-gold hover:text-gold hover:bg-gold/5
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-midnight;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+  }
+
+  .section-title {
+    @apply font-display text-6xl md:text-8xl uppercase tracking-wide;
+  }
+}
+
+/* Starfield background */
+.starfield {
+  position: relative;
+  background: linear-gradient(180deg, #0a0e17 0%, #0d1321 50%, #111827 100%);
+}
+
+.starfield::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, white, transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 230px 80px, white, transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 370px 50px, white, transparent),
+    radial-gradient(2px 2px at 450px 180px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 520px 90px, white, transparent),
+    radial-gradient(2px 2px at 600px 200px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 680px 60px, white, transparent),
+    radial-gradient(2px 2px at 750px 140px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 100px 200px, white, transparent),
+    radial-gradient(2px 2px at 200px 280px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 350px 240px, white, transparent),
+    radial-gradient(2px 2px at 500px 300px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 650px 260px, white, transparent),
+    radial-gradient(2px 2px at 800px 320px, rgba(255,255,255,0.8), transparent);
+  background-repeat: repeat;
+  background-size: 800px 400px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Form inputs focus states */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+/* Remove scrollbar for single-view pages */
+.overflow-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar for pages that need it */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-midnight;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-navy rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold/50;
+}

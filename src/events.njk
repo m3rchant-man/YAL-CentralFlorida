@@ -1,0 +1,84 @@
+---
+layout: base.njk
+title: Events — Liberty
+description: See upcoming YAL events and activities.
+singleView: true
+---
+
+<style>
+  /* Dark theme calendar styling */
+  .calendar-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: transparent;
+    /* Ensure the wrapper takes up space */
+    flex-grow: 1; 
+  }
+  
+  .calendar-wrapper iframe {
+    /* CHANGE: Absolute positioning ensures it binds to the wrapper corners */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    
+    /* CHANGE: Removed min-height so it fits exactly within the flex container */
+    
+    /* Invert colors for dark mode */
+    filter: invert(1) hue-rotate(180deg) saturate(0.8) brightness(1.1) contrast(0.95);
+    mix-blend-mode: screen;
+  }
+  
+  /* Gold tint overlay */
+  .calendar-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg, 
+      rgba(245, 197, 24, 0.04) 0%, 
+      rgba(13, 19, 33, 0.1) 50%,
+      rgba(245, 197, 24, 0.02) 100%
+    );
+    border-radius: 0.75rem;
+  }
+  
+  .calendar-container:hover {
+    border-color: rgba(245, 197, 24, 0.3);
+  }
+</style>
+
+<div class="min-h-screen flex flex-col">
+  {# Added h-screen or max-h-screen to ensure the container doesn't overflow the viewport if desired #}
+  <div class="flex-1 flex flex-col gap-3 p-4 pt-20 h-screen max-h-screen">
+    
+    {# Header #}
+    <div class="flex items-center justify-between flex-shrink-0">
+      <div>
+        <a href="/" class="font-body text-sm text-cream/50 hover:text-gold transition-colors">← Back to Home</a>
+        <h1 class="font-display text-4xl xl:text-5xl uppercase tracking-wide">
+          <span class="text-cream">Upcoming</span>
+          <span class="text-gold"> Events</span>
+        </h1>
+      </div>
+    </div>
+
+    {# Calendar Embed #}
+    {# Added 'flex flex-col relative' to ensure the child wrapper fills height correctly #}
+    <div class="calendar-container flex-1 flex flex-col relative bg-navy/40 rounded-2xl border border-cream/10 p-3 overflow-hidden transition-colors duration-300">
+      <div class="calendar-wrapper">
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&showTitle=0&showCalendars=0&showTz=0&showNav=0&showTabs=0&src=dGhldmFsdWVvZnRyYWRlQGdtYWlsLmNvbQ&color=%23039be5" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
